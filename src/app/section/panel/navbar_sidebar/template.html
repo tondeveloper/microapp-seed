@@ -1,0 +1,19 @@
+<nav class="iconav">
+  <div class="iconav-slider">
+    <div>I am a nav panel and i want to live here</div>
+    <ul class="nav nav-pills iconav-nav">
+      <li ng-class="{'active':NavBarCtrl.IsCurrentState('home_dash')}">
+        <a ng-click="NavBarCtrl.GoToPage('home_dash')" title="Dashboard">
+          <i class="fa fa-fw fa-home"></i>
+          <small class="iconav-nav-label visible-xs-block">Dashboard</small>
+        </a>
+      </li>
+      <li ng-class="{'active':NavBarCtrl.IsCurrentState('landing')}">
+        <a ng-click="NavBarCtrl.GoToPage('landing')" title="Dashboard">
+          <i class="fa fa-fw fa-tachometer"></i>
+          <small class="iconav-nav-label visible-xs-block">Go Back To Landing</small>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

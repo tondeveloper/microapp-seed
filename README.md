@@ -1,1 +1,1 @@
-# microapp-seed
+# Micro Front End App

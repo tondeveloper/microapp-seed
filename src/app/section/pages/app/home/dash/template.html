@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12">
+    This Section is the Root -> App Parent -> App Child
+  <div>
+    <TabComponentDirective instance="Ctrl.instance.component['tab'].instance"></TabComponentDirective>
+  </div>
+  <div>
+      <div ng-if="Ctrl.instance.component['tab'].instance.IsCurrentTab('Tab1')">
+        I am Tab 1
+      </div>
+      <div ng-if="Ctrl.instance.component['tab'].instance.IsCurrentTab('Tab2')">
+        I am Tab 2
+      </div>
+      <div ng-if="Ctrl.instance.component['tab'].instance.IsCurrentTab('Tab3')">
+        I am Tab 3
+      </div>
+    </div>
+  </div>
+</div>

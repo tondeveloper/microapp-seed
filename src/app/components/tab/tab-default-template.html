@@ -1,0 +1,5 @@
+<ul class="nav nav-bordered trends">
+  <li ng-repeat="t in TabCtrl.instance.tab" ng-class="{'active':TabCtrl.instance.IsCurrentTab(t)}">
+    <a href="" ng-click="TabCtrl.instance.ChangeTabTo(t)">{{t}}</a>
+  </li>
+</ul>
