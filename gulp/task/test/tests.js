@@ -36,7 +36,10 @@ UnitTestModule.prototype.RunTests = function(isRunOnce, callback) {
   };
 
   var DisplayError = function (failCount) {
-    (failCount ? new Error("Failed " + failCount + " tests.") : null);
+    if(failCount){
+      var test_error = new Error('Gulp Unit Testing Complete. Client App Has Failed One or More Test. Please Fix them!')
+      throw test_error;
+    }
   }
 
   var server = new karma.Server(localConfig, DisplayError);
