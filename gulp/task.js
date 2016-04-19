@@ -199,7 +199,9 @@ var TaskModule = function(settings){
     gulp.task('scripts-lint-server', function(){
       return ScriptModule.LintServerScripts();
     });
-
+    gulp.task('scripts-lint-css', function(){
+      return ScriptModule.LintCssThemes();
+    });
 
     /*WATCHER*/
     gulp.task('watch', function (callback) {

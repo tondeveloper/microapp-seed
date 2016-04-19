@@ -38,6 +38,26 @@ ScriptModule.prototype.LintServerScripts = function() {
              .pipe($plugin.size())
 };
 
+ScriptModule.prototype.LintCssThemes = function(){
+  var PathAssets   = path.join(this.config.paths.src, '/assets');
+  var PathResource = path.join(this.config.paths.src, '/resources');
+  var lessOptions = {
+    'options': [PathAssets,PathResource]
+  };
+
+  var Dark = path.join(this.config.paths.src, '/assets/theme/dark-theme.less');
+  var Light = path.join(this.config.paths.src, '/assets/theme/light-theme.less');
+
+  return gulp.src([ Dark, Light ])
+    .pipe($plugin.less(lessOptions)).on('error', throwError.bind(this));
+
+  function throwError(e){
+    this.config.errorHandler('Css');
+    var test_error = new Error('Linting css themes has produce errors.')
+    throw test_error;
+  }
+};
+
 module.exports = function(config){
   return new ScriptModule(config);
 };
