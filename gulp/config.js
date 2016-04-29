@@ -16,7 +16,7 @@ function ConfigModule(config){
     'root'  : '',
     'client': clientDir,
     'src'   : clientDir+'src',
-    'dist'  : clientDir+'public',
+    'dist'  : clientDir+'dist',
     'tmp'   : clientDir+'.tmp',
     'e2e'   : clientDir+'e2e',
     'bower' : clientDir+'bower_components'

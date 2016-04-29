@@ -1,20 +1,19 @@
 'use strict';
 
 var path    = require('path');
-//var config  = require('./gulp/config')('client/');
 var _       = require('lodash');
 var wiredep = require('wiredep');
-var fs    = require('fs');
+var fs      = require('fs');
 
 function listFiles() {
-  var p = 'src';
+  var loc = 'src';
   var w = {
     'exclude': [/\/bootstrap\.js$/, /\/bootstrap\.css/],
     'directory': 'bower_components',
     'bowerJson': JSON.parse(fs.readFileSync('bower.json'))
   };
 
-  var pathSrcHtml = [ path.join(p, '/**/*.html')];
+  var pathSrcHtml = [ path.join(loc, '/**/*.html')];
 
   var wiredepOptions = _.extend({}, w, {
     dependencies: true,
@@ -23,10 +22,10 @@ function listFiles() {
 
   var patterns = wiredep(wiredepOptions).js
     .concat([
-      path.join(p, '/app/**/*.module.js'),
-      path.join(p, '/app/**/*.js'),
-      path.join(p, '/**/*.spec.js'),
-      path.join(p, '/**/*.mock.js'),
+      path.join(loc, '/app/**/*.module.js'),
+      path.join(loc, '/app/**/*.js'),
+      path.join(loc, '/**/*.spec.js'),
+      path.join(loc, '/**/*.mock.js'),
       './node_modules/phantomjs-polyfill/bind-polyfill.js', //Added because phantom JS does not support prototype.bind()
     ])
     .concat(pathSrcHtml);
@@ -36,30 +35,32 @@ function listFiles() {
       'pattern': pattern
     };
   });
+
   files.push({
-    'pattern' : path.join(p, '/assets/**/*'),
+    'pattern' : path.join(loc, '/assets/**/*'),
     'included': false,
     'served'  : true,
     'watched' : false
   });
+  
   return files;
 }
 
 module.exports = function(c) {
-  var p = 'src';
+  var loc = 'src';
 
   var settings = {
     'files': listFiles(),
     'singleRun': true,
     'autoWatch': false,
     'ngHtml2JsPreprocessor': {
-      'stripPrefix': p + '/',
+      'stripPrefix': loc + '/',
       'moduleName': 'client/Template'
     },
     'logLevel': 'WARN',
     'frameworks': ['jasmine', 'angular-filesort'],
     'angularFilesort': {
-      'whitelist': [path.join(p, '/**/!(*.html|*.spec|*.mock).js')]
+      'whitelist': [path.join(loc, '/**/!(*.html|*.spec|*.mock).js')]
     },
     'browsers' : ['PhantomJS'],
     'plugins' : [
@@ -75,7 +76,7 @@ module.exports = function(c) {
     },
     'reporters': ['progress'],
     'proxies': {
-      '/assets/': path.join('/base/', p, '/assets/')
+      '/assets/': path.join('/base/', loc, '/assets/')
     }
   };
 
@@ -83,7 +84,7 @@ module.exports = function(c) {
   // The coverage preprocessor is added in gulp/unit-test.js only for single tests
   // It was not possible to do it there because karma doesn't let us now if we are
   // running a single test or not
-  var pathSrcHtml = [ path.join(p, '/**/*.html')];
+  var pathSrcHtml = [ path.join(loc, '/**/*.html')];
   settings.preprocessors = {};
   pathSrcHtml.forEach(function (pathing) {
     settings.preprocessors[pathing] = ['ng-html2js'];
