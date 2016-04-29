@@ -1,12 +1,10 @@
 {
-  "name": "dockertest",
+  "name": "microapp-seed",
   "version": "0.0.1",
   "scripts": {
-    "start": "node ./bin/www",
     "build": "gulp build",
     "test" : "gulp test"
   },
-  "main": "./bin/www",
   "dependencies": {
     "lodash": "^4.7.0",
     "nodemon": "^1.8.1"
@@ -55,6 +53,12 @@
     "uglify-save-license": "~0.4.1",
     "wiredep": "~2.2.2"
   },
+  "description": "",
+  "keywords": [
+    "microapp",
+    "angular"
+  ],
+  "author": "Jack Ton",
   "engines": {
     "node": "4.2.x"
   }
