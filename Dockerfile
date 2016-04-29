@@ -5,6 +5,10 @@ ENV DIR /client
 RUN mkdir $DIR
 WORKDIR $DIR
 
+RUN apt-get update
+RUN apt-get install -y nodejs-legacy
+RUN apt-get install -y bzip2
+
 ADD package.json $DIR/package.json
 RUN npm install
 
