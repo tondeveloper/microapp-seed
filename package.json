@@ -47,7 +47,7 @@
     "karma-ng-html2js-preprocessor": "~0.2.0",
     "karma-phantomjs-launcher": "~0.2.1",
     "main-bower-files": "~2.9.0",
-    "mocha": "^2.3.3",
+    "phantomjs-polyfill": "0.0.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "uglify-save-license": "~0.4.1",
