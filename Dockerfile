@@ -1,24 +1,32 @@
 FROM node:latest
 
-WORKDIR /myApp
+ENV DIR /client
 
-#RUN export PATH="/usr/local/share/npm/bin:$PATH"
+RUN mkdir $DIR
+WORKDIR $DIR
 
-ADD gulp /myApp/gulp
-ADD src /myApp/src
-ADD bower.json /myApp/bower.json
-ADD gulpfile.js /myApp/gulpfile.js
-ADD karma.conf.js /myApp/karma.conf.js
-ADD package.json /myApp/package.json
-
+ADD package.json $DIR/package.json
 RUN npm install
 
+
+ADD bower.json $DIR/bower.json
 RUN npm install bower -g
 RUN bower install --allow-root
 
+
+ADD gulp $DIR/gulp
+ADD gulpfile.js $DIR/gulpfile.js
 RUN npm install gulp -g
 
+
+ADD src $DIR/src
+ADD karma.conf.js $DIR/karma.conf.js
+RUN gulp test
+
+
 RUN gulp build
+
+
 
 RUN rm -r gulp
 RUN rm -r src
