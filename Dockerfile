@@ -29,8 +29,9 @@ ADD karma.conf.js $DIR/karma.conf.js
 RUN gulp test
 
 
-RUN npm build
+RUN gulp build
 
+RUN ls
 
 RUN rm -r gulp
 RUN rm -r src
@@ -42,3 +43,5 @@ RUN rm bower.json
 RUN rm gulpfile.js
 RUN rm karma.conf.js
 RUN rm package.json
+
+RUN ls
