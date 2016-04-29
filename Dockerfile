@@ -21,10 +21,10 @@ RUN npm install gulp -g
 
 ADD src $DIR/src
 ADD karma.conf.js $DIR/karma.conf.js
-RUN gulp test
+RUN npm test
 
 
-RUN gulp build
+RUN npm build
 
 
 RUN rm -r gulp
