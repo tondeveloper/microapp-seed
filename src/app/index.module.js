@@ -83,7 +83,7 @@
             ]);
 
       angular.module('Modifiers', [
-        'ScrollBar/Modifier/Directive'
+
       ]);
 
   angular.module('MyModules', [
