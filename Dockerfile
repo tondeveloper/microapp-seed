@@ -6,6 +6,7 @@ RUN mkdir $DIR
 WORKDIR $DIR
 
 RUN apt-get update
+RUN apt-get install -y git
 RUN apt-get install -y nodejs-legacy
 RUN apt-get install -y bzip2
 
@@ -25,11 +26,12 @@ RUN npm install gulp -g
 
 ADD src $DIR/src
 ADD karma.conf.js $DIR/karma.conf.js
-RUN npm test
+RUN gulp test
 
 
-RUN npm build
+RUN gulp build
 
+RUN ls
 
 RUN rm -r gulp
 RUN rm -r src
@@ -41,3 +43,5 @@ RUN rm bower.json
 RUN rm gulpfile.js
 RUN rm karma.conf.js
 RUN rm package.json
+
+RUN ls
