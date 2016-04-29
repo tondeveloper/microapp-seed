@@ -27,7 +27,6 @@ RUN gulp test
 RUN gulp build
 
 
-
 RUN rm -r gulp
 RUN rm -r src
 RUN rm -r node_modules
