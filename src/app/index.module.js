@@ -20,7 +20,6 @@
 
   angular.module('GlobalModules', [
     'Global/Ramda/Factory',
-    'Global/PerfectScrollBar/Factory',
     'Global/Jquery/Factory',
     'Global/Moment/Factory'
   ]);
