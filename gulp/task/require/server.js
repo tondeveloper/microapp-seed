@@ -14,20 +14,6 @@ function ServerModule(config){
   this.config = config;
 }
 
-ServerModule.prototype.StartNodemonServer = function(callback){
-  var hasStarted = false;
-  
-  nodemon({
-    script: 'bin/www'
-  }).on('start', function () {
-    callback();
-    if (!hasStarted) {
-      hasStarted = true;
-      //callback();
-    }
-  });
-};
-
 ServerModule.prototype.StartServerByServe = function(callback){
   var baseDir1 = path.join(this.config.paths.tmp, '/serve');
   var baseDir2 = this.config.paths.src;
