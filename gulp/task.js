@@ -55,14 +55,6 @@ var TaskModule = function(settings){
       run('stage-temp', 'stage-build', callback);
     });
 
-    //testing
-    gulp.task('serve:proxy:nodemon', function (callback) {
-      run('server-start-nodemon', 'stage-temp', 'watch', 'server-start-proxy', callback);
-    });
-    //FYI Unit test are still in alpha
-
-
-
     //gulp.task('serve:e2e', /*['inject'],*/ function (callback) {
     //  ServerModule.BrowserSyncInit([config.paths.tmp + '/serve', config.paths.src], []);
     //});
@@ -85,7 +77,7 @@ var TaskModule = function(settings){
     });
     gulp.task('stage-build', function (callback){
       run('clean-dist', 'build-angular-template-partials', 'inject-angular-template-partials', 
-          'build-dist-folder',['copy-images-dist','copy-favicon-dist', 'copy-font-dist'], callback);
+          'build-dist-folder',['copy-images-dist','copy-favicon-dist', 'copy-font-dist'], 'build-verify-dist-folder', callback);
     });
 
 
@@ -119,9 +111,6 @@ var TaskModule = function(settings){
     gulp.task('server-updatestream-style',function(){
       return StyleModule.UpdateStylesStreams();
     });
-    gulp.task('server-start-nodemon', function(callback){
-      return ServerModule.StartNodemonServer(callback);
-    })
 
     /*INJECTOR*/
     gulp.task('inject-styles', function (callback){
@@ -170,6 +159,9 @@ var TaskModule = function(settings){
     });
     gulp.task('build-dist-folder', function(){
       return BuildModule.BuildDistFolder();
+    });
+    gulp.task('build-verify-dist-folder', function(){
+      return BuildModule.VerifyDistFolder();
     });
 
     /*COPY*/

@@ -49,21 +49,9 @@ InjectThemeModule.prototype.InjectThemeDarkStyles = function(){
 }
 
 InjectThemeModule.prototype.GetThemeScript = function(){
-  //we must list out the bootstrap script in order because some are dependency of others
-  //var dir = path.join(this.config.paths.src, '/resource/bootstrap-theme-dashboard/js/bootstrap/');
+  //var dir = path.join(this.config.paths.src, '/resource');
   var Js = [
-      //dir+'transition.js',
-      //dir+'alert.js',
-      //dir+'affix.js',
-      //dir+'button.js',
-      //dir+'carousel.js',
-      //dir+'collapse.js',
-      //dir+'dropdown.js',
-      //dir+'modal.js',
-      //dir+'tooltip.js',
-      //dir+'popover.js',
-      //dir+'scrollspy.js',
-      //dir+'tab.js',
+      //dir+'/third-party.js',
     ]
 
   return gulp.src(Js);
