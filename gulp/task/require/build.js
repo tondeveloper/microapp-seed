@@ -25,7 +25,7 @@ BuildModule.prototype.BuildAngularTemplatePartials = function(){
   var partials = path.join(this.config.paths.src, '/app/**/*.html');
   var dest = path.join(this.config.paths.tmp, 'serve/scripts/');
   return gulp.src([partials])
-             .pipe($plugin.minifyHtml({
+             .pipe($plugin.htmlmin({
                empty: true,
                spare: true,
                quotes: true
