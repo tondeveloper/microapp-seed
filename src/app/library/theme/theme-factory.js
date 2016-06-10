@@ -1,17 +1,17 @@
 (function(){
     'use strict';
 
-    angular.module('Theme/Application/Factory', ['ngCookies'])
+    angular.module('Theme/Application/Factory', ['ngCookies', 'Global/Jquery/Factory'])
            .factory('ThemeApplicationFactory', Factory)
 
     /* @ngInject */
-    function Factory($cookies){
+    function Factory($cookies, jquery){
 
         var Model = function(params){
             this.myTheme = 'dark';
             this.list  = {
-                'dark' :angular.element("link[href*='dark']"),
-                'light':angular.element("link[href*='light']")
+                'dark' :jquery("link[href*='dark']"),
+                'light':jquery("link[href*='light']")
             };
         }
         Model.prototype.SetMyTheme = function(theme){
