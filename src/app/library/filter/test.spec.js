@@ -5,61 +5,33 @@
   
   function TestConditions1(){
       var Factory;
+      var Factory2;
       var scope;
       var element;
-      var cookies;
       
-      beforeEach(module('Filter/Date/Factory', 'ngCookies'));
+      beforeEach(module('Filter/Date/Factory', 'Time/Timezone/Factory'));
   
-      beforeEach(inject(function ($rootScope, FilterDateFactory, $cookies) {
+      beforeEach(inject(function ($rootScope, FilterDateFactory, TimeTimezoneFactory) {
         Factory = FilterDateFactory
-        cookies = $cookies
+        Factory2 = TimeTimezoneFactory
         scope = $rootScope.$new();
       }));
 
-      it('Should load preference (in this case load default)'     , V0001);
-      it('Should load preference (in this case load from cookie)' , V0002);
-      it('Should set timezone when called'                        , V0003);
-      it('Should parse string number to int number'               , V0004);
-      it('Should convert date with correct timezone offset'       , V0005);
-      it('Should return data if null'                             , V0006);
 
-      function V0001(){
-        Factory.LoadPreferenceTimezoneOffset();
-        var my = Factory.timezone_offset;
-        expect(my).toEqual(-6);
+      it('Should convert date with correct timezone offset'       , V0001);
+      it('Should return data if null'                             , V0002);
+
+      function V0001(){    
+        Factory2.SetMyTimezoneLabel('UTC');
+        var my = Factory.ConvertDateTZFormatB('2016-01-05T14:31:25.880Z');
+        expect(my).toEqual('Jan 5, 2016, 2:31 pm');
       }
-      function V0002(){
-        cookies.put('timezone_offset', -8);
-        Factory.LoadPreferenceTimezoneOffset();
-        var my = Factory.timezone_offset;
-        expect(my).toEqual(-8);
-      }
-      function V0003(){
-        Factory.SetMyTimezone(-7);
-        var my = Factory.timezone_offset;
-        expect(my).toEqual(-7);
-        Factory.LoadPreferenceTimezoneOffset();
-            my = Factory.timezone_offset;
-        expect(my).toEqual(-7);
-      }
-      function V0004(){    
-        Factory.SetMyTimezone(-6);
-        var my = Factory.ConvertDateTZFormatA('2016-01-05T22:31:25.880Z');
-        expect(my).toEqual('Jan 5, 2016');
-      }
-      function V0005(){    
-        Factory.SetMyTimezone(-7);
-        var my = Factory.ConvertDateTZFormatB('2016-01-05T22:31:25.880Z');
-        expect(my).toEqual('Jan 5, 2016 3:31 pm');
-      }
-      function V0006(){    
-        Factory.SetMyTimezone(-7);
+      function V0002(){    
+        Factory2.SetMyTimezoneLabel('UTC');
         var my = Factory.ConvertDateTZFormatA(null);
-        expect(my).toEqual(undefined);
+        expect(my).toEqual(null);
             my = Factory.ConvertDateTZFormatB(null);
-        expect(my).toEqual(undefined);
+        expect(my).toEqual(null);
       }
-      
   }
 })();

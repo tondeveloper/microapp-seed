@@ -1,18 +1,16 @@
 (function() {
   'use strict';
 
-    angular.module('Root/RunBlock/Run',['Theme/Application/Factory', 'Filter/Date/Factory'])
+    angular.module('Root/RunBlock/Run',['Theme/Application/Factory', 'Time/Timezone/Factory'])
            .run(RunBlock);
 
         /* @ngInject */
-        function RunBlock($rootScope, $log, $timeout, ThemeApplicationFactory, FilterDateFactory) {
+        function RunBlock($rootScope, $log, $timeout, ThemeApplicationFactory, TimeTimezoneFactory) {
 
 
             /*Load all customizable component preference stored by cookie*/
  
-            FilterDateFactory.LoadPreferenceTimezoneOffset();
-
-
+            TimeTimezoneFactory.LoadPreferenceTimezoneOffset();
 
             /*THIS EVENT IS TRIGGER WHEN A ROUTE IS INITIATE A CHANGED*/
             //$rootScope.$on('$stateChangeStart', function (event, toState,toParams, fromState, fromParams, error) {
